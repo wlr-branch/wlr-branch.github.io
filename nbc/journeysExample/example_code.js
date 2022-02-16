@@ -1,0 +1,1 @@
+alert("This box was onLoad");

@@ -1,0 +1,83 @@
+<html> 
+  <script>
+      // load Branch Web SDK
+      (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode autoAppIndex banner closeBanner closeJourney creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode trackCommerceEvent logEvent disableTracking".split(" "), 0);
+      // init Branch
+      branch.init('key_live_hkDytPACtipny3N9XmnbZlapBDdj4WIL');
+      branch.track('pageview333222');
+      branch.closeJourney();
+    </script>
+  2/16/22
+  <br>
+  Hey everyone - This use case came up around targeting users who have been watching a video on the website and clicked pause. These are a couple examples of ways to trigger journeys / target users based off this and other web exents: 
+  <br>
+  1) Triggering a websdk method to track an event and then targeting the journey based off that event 
+  <br>
+  2) Using the websdk to display a journey - once the user clicks pause
+
+
+<br>
+---------------<br>
+  <button id="btn1">(1) Tracking event</button>
+---------------<br>
+---------------<br>
+<button id="btn2">(2) Display Journey</button>
+---------------<br>
+<button id="btn3">(3) Hide Journey</button>
+---------------<br>
+<br>
+
+<br>
+  <script>
+    //script handles listening for click and executing script
+    function trackEvent() {
+      //here is branch event tracking
+
+      var event_and_custom_data = {
+         "video_id": "vid_1234",
+         "description": "Paused Video",
+         "registration_id": "12345"
+      };
+
+      var customer_event_alias = "user paused video";
+
+      branch.logEvent(
+         "COMPLETE_STREAM",
+         event_and_custom_data,
+         //content_items,
+         customer_event_alias,
+         function(err) { console.log(err); }
+      );
+    }
+
+    function showJourney(){
+      branch.track("pageview");
+    }
+
+    function hideJourney(){
+      branch.closeJourney();
+    }
+
+    let btn1 = document.getElementById("btn1");
+    btn1.addEventListener('click', event => {
+      trackEvent();
+    });
+
+    let btn2 = document.getElementById("btn2");
+    btn2.addEventListener('click', event => {
+      showJourney();
+    });
+
+    let btn3 = document.getElementById("btn3");
+    btn2.addEventListener('click', event => {
+      hideJourney();
+    });
+  </script>
+
+  <br>
+  The idea here would be for the NBC dev team to trigger the 'showJourney' code segement/example here when the user clicks on the 'pause' video button. 
+  <br>
+
+<! --- https://help.branch.io/developers-hub/docs/web-advanced-features#create-journeys-banner --->
+
+</html>

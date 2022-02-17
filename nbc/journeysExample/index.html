@@ -48,15 +48,20 @@
          customer_event_alias,
          function(err) { console.log(err); }
       );
+      alert('Triggered code to track the event');
     }
 
     function showJourney(){
       branch.track("pageview");
+      alert('Triggered code to show the journey');
     }
 
     function hideJourney(){
       branch.closeJourney();
+      alert('Triggered code to close the journey');
     }
+
+
 
     let btn1 = document.getElementById("btn1");
     btn1.addEventListener('click', event => {
@@ -69,7 +74,7 @@
     });
 
     let btn3 = document.getElementById("btn3");
-    btn2.addEventListener('click', event => {
+    btn3.addEventListener('click', event => {
       hideJourney();
     });
   </script>

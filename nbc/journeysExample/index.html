@@ -10,21 +10,21 @@
   2/16/22
   <br>
   Hey everyone - This use case came up around targeting users who have been watching a video on the website and clicked pause. These are a couple examples of ways to trigger journeys / target users based off this and other web exents: 
-  <br>
-  1) Triggering a websdk method to track an event and then targeting the journey based off that event 
-  <br>
-  2) Using the websdk to display a journey - once the user clicks pause
+  <br><br>
+  1) Triggering a websdk method to track an event and then targeting the journey based off that event. This would be a similar approach to triggering the event via mParticle. Once the 'pauseVideo' event has been triggered, you can then target journey's to users who have triggered this 'pauseVideo' event. This journey would be displayed once the user navigates to a new nbc.com URL or refreshes the page. Sample code for triggering a webSDK event can be found behind the 'Tracking event' button.
+  <br><br>
+  2) Using the websdk to display a journey that was already targeted at the page/URL path. The idea here would be to target a journey to a specific URL/ path, as the page loads, make sure the journey is hidden (example code behind the 'hide journey' button) and then once the user clicks on the pause button, trigger the code to display the journey (sample code behind 'Display Journey' button) over the paused video screen. 
 
 
-<br>
----------------<br>
-  <button id="btn1">(1) Tracking event</button>
----------------<br>
----------------<br>
+<br><br>
+---------------
+  <button id="btn1">(1) Track event</button>
+---------------<br><br>
+---------------
 <button id="btn2">(2) Display Journey</button>
----------------<br>
+---------------<br><br>---------------
 <button id="btn3">(3) Hide Journey</button>
----------------<br>
+---------------
 <br>
 
 <br>
@@ -75,7 +75,14 @@
   </script>
 
   <br>
-  The idea here would be for the NBC dev team to trigger the 'showJourney' code segement/example here when the user clicks on the 'pause' video button. 
+  Of course, let us know if there are any questions or if anything comes up with which we can help. 
+<br><br>
+  Cheers-<br>
+  Wyatt<br>
+  wyatt-liang.ratliff@branch.io
+
+  <br>
+
   <br>
 
 <! --- https://help.branch.io/developers-hub/docs/web-advanced-features#create-journeys-banner --->

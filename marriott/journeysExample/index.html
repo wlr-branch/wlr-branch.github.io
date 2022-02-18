@@ -1,0 +1,97 @@
+<html> 
+  <script>
+      // load Branch Web SDK
+      (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode autoAppIndex banner closeBanner closeJourney creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode trackCommerceEvent logEvent disableTracking".split(" "), 0);
+      // init Branch
+      branch.init('key_live_pe0UjZjJoZNURcpIdboEndpcxDk88bgc');
+      branch.track('pageview333222');
+      branch.closeJourney();
+    </script>
+  Februrary 2022
+  <br>
+  Hi Marriott Team -<br> 
+  Sally and I wanted to share over an example Journeys implementation. 
+  <br><br>
+  This example is pretty simple and should help the dev team understand a bit more on how to work with Journeys.  
+  <br><br>
+  1) Triggering a websdk method to track an event and then targeting the journey based off that event. Once the 'userClickedDateRange' event has been triggered, you can then target journey's to users who have triggered this web based event. This journey would be displayed once the user navigates to a new marriott.com URL or refreshes the page. Sample code for triggering a webSDK event can be found behind the 'Tracking event' button.
+  <br><br>
+  2) Using the websdk to display a journey that was already targeted at the page/URL path. The idea here would be to target a journey to a specific URL/ path, as the page loads, make sure the journey is hidden (example code behind the 'hide journey' button) and then once the user has selected a date range, trigger the code to display the journey (sample code behind 'Display Journey' button) over the paused video screen. 
+
+
+<br><br>
+---------------
+  <button id="btn1">(1) Track event</button>
+---------------<br><br>
+---------------
+<button id="btn2">(2) Display Journey</button>
+---------------<br><br>---------------
+<button id="btn3">(3) Hide Journey</button>
+---------------
+<br>
+
+<br>
+  <script>
+    //script handles listening for click and executing script
+    function trackEvent() {
+      //here is branch event tracking
+
+      var event_and_custom_data = {
+         "video_id": "vid_1234",
+         "description": "Paused Video",
+         "registration_id": "12345"
+      };
+
+      var customer_event_alias = "user paused video";
+
+      branch.logEvent(
+         "COMPLETE_STREAM",
+         event_and_custom_data,
+         //content_items,
+         customer_event_alias,
+         function(err) { console.log(err); }
+      );
+      alert('Triggered code to track the event');
+    }
+
+    function showJourney(){
+      branch.track("pageview");
+      alert('Triggered code to show the journey');
+    }
+
+    function hideJourney(){
+      branch.closeJourney();
+      alert('Triggered code to close the journey');
+    }
+
+
+
+    let btn1 = document.getElementById("btn1");
+    btn1.addEventListener('click', event => {
+      trackEvent();
+    });
+
+    let btn2 = document.getElementById("btn2");
+    btn2.addEventListener('click', event => {
+      showJourney();
+    });
+
+    let btn3 = document.getElementById("btn3");
+    btn3.addEventListener('click', event => {
+      hideJourney();
+    });
+  </script>
+
+  <br>
+  Of course, let us know if there are any questions or if anything comes up with which we can help. 
+<br><br>
+  Cheers-<br>
+  Wyatt<br>
+  wyatt-liang.ratliff@branch.io
+
+  <br>
+
+  <br>
+<! --- https://help.branch.io/developers-hub/docs/web-advanced-features#create-journeys-banner --->
+
+</html>
